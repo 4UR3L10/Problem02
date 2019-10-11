@@ -1,9 +1,17 @@
+/******************************************************************************************************
+* Purpose/Description: <Implements the methods below of a Binary Search Tree>                          *
+* Author’s Panther ID: <6206864>                                                                      *
+* Certification:                                                                                      *
+* I hereby certify that this work is my own and none of it is the work of                             *
+* any other person.                                                                                   *
+******************************************************************************************************/
 package problem02;
 
 public class BinarySearchTree
 {
     private BinarySearchTreeNode root;
 
+    // Insert an element into the Tree.
     public void insert(int key)
     {
         // If the Tree is empty. 
@@ -52,6 +60,7 @@ public class BinarySearchTree
         }
     }
 
+    // Delete an element from the Tree.
     public void delete(int key)
     {
         BinarySearchTreeNode parent = null;
@@ -134,6 +143,7 @@ public class BinarySearchTree
         System.out.println("Element Deleted Successfully.");        
     }
 
+    // Lookup for a value in the Tree.
     public boolean find(int key)
     {
         // Start from the root.
@@ -162,12 +172,14 @@ public class BinarySearchTree
         return false;
     }
     
+    // Helper to Add positive numbers.
     public int positiveKeySum()
     {
       // Helper.  
       return positiveKeySum(root);  
     }
 
+    // Add all positive numbers from the Tree.
     public int positiveKeySum(BinarySearchTreeNode root)
     {
         // If Tree is empty.
@@ -184,6 +196,7 @@ public class BinarySearchTree
         return root.key + positiveKeySum(root.left) + positiveKeySum(root.right);
     }
     
+    // Delete the maximum number in the Tree.
     public void deleteMax()
     {
         BinarySearchTreeNode currentNode = root;
@@ -207,32 +220,28 @@ public class BinarySearchTree
         delete(currentNode.key);
     }
     
-    public void printTree() // Post Order
+    // Helper to print the Tree in InOrder Traversal.
+    public void printTree() 
     {
         printTree(root);
     }
     
-    public void printTree(BinarySearchTreeNode root) // Post Order
+    // Print the Tree in InOrder Traversal.
+    public void printTree(BinarySearchTreeNode root) // InOrder
     {
+        // If the Tree is empty.
         if(root == null)
         {                        
             return;
         }
-//        // Display Childs
-//        else if (root.left == null)
-//        {
-            System.out.println(root.key);
-//        } 
-//        else
-//        {
-            printTree(root.left);            
-            printTree(root.right);
-            
-//            // Display Parents    
-//            if (root.left != null && root.right != null)
-//            {
-//                System.out.println(root.key);
-//            }
-//        }
+        
+        // First left child.
+        printTree(root.left);
+        
+        // Then print the data of the current key.
+        System.out.println(root.key);
+        
+        // Last Right Child.
+        printTree(root.right);
     }
 }
